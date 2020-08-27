@@ -51,7 +51,7 @@ const Game: React.FC<Props> = ({ width, height }) => {
     <div className="game">
       <button
         className="back-button"
-        onClick={() => window.location.replace("")}
+        onClick={() => window.location.assign(window.location.origin)}
       >
         {"< Back"}
       </button>
