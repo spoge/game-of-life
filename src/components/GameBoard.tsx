@@ -3,45 +3,45 @@ import Cell from "./Cell";
 
 interface Props {
   generation: number;
-  positions: boolean[][];
-  setPositions: Dispatch<SetStateAction<boolean[][]>>;
-  setStartPositions: Dispatch<SetStateAction<boolean[][]>>;
+  cells: boolean[][];
+  setCells: Dispatch<SetStateAction<boolean[][]>>;
+  setStartCells: Dispatch<SetStateAction<boolean[][]>>;
 }
 
 const GameBoard: React.FC<Props> = ({
   generation,
-  positions,
-  setPositions,
-  setStartPositions,
+  cells,
+  setCells,
+  setStartCells,
 }) => {
   const toggleCell = (
     setter: Dispatch<SetStateAction<boolean[][]>>,
     row: number,
     column: number
   ) => {
-    let newPositions = positions.map((cellRow, i) =>
+    let newCells = cells.map((cellRow, i) =>
       cellRow.map((cellIsAlive, j) => {
         if (i === row && j === column) return !cellIsAlive;
         return cellIsAlive;
       })
     );
-    setter(newPositions);
-    if (setter === setStartPositions) {
-      setPositions(newPositions);
+    setter(newCells);
+    if (setter === setStartCells) {
+      setCells(newCells);
     }
   };
 
   return (
     <div className="board">
       {[
-        ...positions.map((row, rowIndex) => (
+        ...cells.map((row, rowIndex) => (
           <div className="row" key={rowIndex}>
             {[
               ...row.map((alive, columnIndex) => (
                 <Cell
                   onClick={() => {
                     if (generation === 1) {
-                      toggleCell(setStartPositions, rowIndex, columnIndex);
+                      toggleCell(setStartCells, rowIndex, columnIndex);
                     }
                   }}
                   key={columnIndex}

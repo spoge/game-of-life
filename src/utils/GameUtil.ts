@@ -1,4 +1,4 @@
-const neighbourCount = (board: boolean[][], y: number, x: number) => {
+const cellNeighbourCount = (board: boolean[][], y: number, x: number) => {
   let count = 0;
   let isYOuterEdge = y >= board.length - 1;
   let isXOuterEdge = x >= board.length - 1;
@@ -16,15 +16,15 @@ const neighbourCount = (board: boolean[][], y: number, x: number) => {
   return count;
 };
 
-const nextGenerationPositions = (positions: boolean[][]) =>
-  positions.map((row, y) =>
+const nextGenerationCells = (cells: boolean[][]) =>
+  cells.map((row, y) =>
     row.map((isAlive, x) => {
-      let neighbours = neighbourCount(positions, y, x);
+      let neighbourCount = cellNeighbourCount(cells, y, x);
       return (
-        (isAlive && (neighbours === 2 || neighbours === 3)) ||
-        (!isAlive && neighbours === 3)
+        (isAlive && (neighbourCount === 2 || neighbourCount === 3)) ||
+        (!isAlive && neighbourCount === 3)
       );
     })
   );
 
-export { nextGenerationPositions };
+export { nextGenerationCells };

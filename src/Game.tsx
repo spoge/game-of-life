@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GameBoard from "./components/GameBoard";
 import GameUI from "./components/GameUI";
-import { nextGenerationPositions } from "./utils/GameUtil";
+import { nextGenerationCells } from "./utils/GameUtil";
 import arrayFromTo from "./utils/ArrayUtil";
 
 interface Props {
@@ -10,10 +10,10 @@ interface Props {
 }
 
 const Game: React.FC<Props> = ({ width, height }) => {
-  const [startPositions, setStartPositions] = useState<boolean[][]>(
+  const [startCells, setStartCells] = useState<boolean[][]>(
     arrayFromTo(width, height)
   );
-  const [positions, setPositions] = useState<boolean[][]>(startPositions);
+  const [cells, setCells] = useState<boolean[][]>(startCells);
   const [generation, setGeneration] = useState(1);
   const [isSimulating, setIsSimulating] = useState(false);
   const [interval, setInterval] = useState(500);
@@ -29,31 +29,31 @@ const Game: React.FC<Props> = ({ width, height }) => {
   }, [generation, isSimulating, interval]);
 
   const simulateGeneration = () => {
-    setPositions(nextGenerationPositions);
+    setCells(nextGenerationCells);
     setGeneration(generation + 1);
   };
 
   const resetSimulation = () => {
     setIsSimulating(false);
     setGeneration(1);
-    setPositions(startPositions);
+    setCells(startCells);
   };
 
   const clearSimulation = () => {
     setIsSimulating(false);
     setGeneration(1);
-    let newPositions = arrayFromTo(width, height);
-    setPositions(newPositions);
-    setStartPositions(newPositions);
+    let newCells = arrayFromTo(width, height);
+    setCells(newCells);
+    setStartCells(newCells);
   };
 
   return (
     <div className="game">
       <GameBoard
         generation={generation}
-        positions={positions}
-        setPositions={setPositions}
-        setStartPositions={setStartPositions}
+        cells={cells}
+        setCells={setCells}
+        setStartCells={setStartCells}
       />
       <GameUI
         generation={generation}
