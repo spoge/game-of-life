@@ -49,6 +49,12 @@ const Game: React.FC<Props> = ({ width, height }) => {
 
   return (
     <div className="game">
+      <button
+        className="back-button"
+        onClick={() => window.location.replace("")}
+      >
+        {"< Back"}
+      </button>
       <GameBoard
         generation={generation}
         cells={cells}
