@@ -6,7 +6,7 @@ interface Props {
 
 const GameHeader: React.FC<Props> = ({ generation }) => {
   return (
-    <div className="upper-ui">
+    <div className="game-header">
       <button
         className="back-button"
         onClick={() => window.location.assign(window.location.origin)}

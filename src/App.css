@@ -18,7 +18,7 @@
   align-self: flex-start;
 }
 
-.upper-ui {
+.game-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -38,11 +38,18 @@
 }
 
 .game-buttons {
-  margin-top: 1em;
+  /*margin-top: 1em;*/
   display: flex;
   align-self: center;
   align-items: center;
   justify-content: center;
+}
+
+.small-game-button {
+  padding: 0.5em;
+  margin: 0.5em 0.5em;
+  font-size: 20px;
+  width: 5em;
 }
 
 .game-button {

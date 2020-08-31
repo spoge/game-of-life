@@ -32,6 +32,27 @@ const Game: React.FC<Props> = ({ startWidth, startHeight }) => {
     return () => clearTimeout(timer);
   }, [generation, isSimulating, interval]);
 
+  useEffect(() => {
+    if (width < 1 || height < 1) {
+      setWidth(startWidth);
+      setHeight(startHeight);
+      return;
+    }
+
+    let newStartCells = arrayFromTo(width, height).map((row, width) =>
+      row.map((cell, height) =>
+        startCells.length > height &&
+        startCells[height].length > width &&
+        startCells[width] !== undefined
+          ? startCells[width][height]
+          : cell
+      )
+    );
+
+    setStartCells(newStartCells);
+    setCells(newStartCells);
+  }, [width, height]);
+
   const simulateGeneration = () => {
     setCells(nextGenerationCells);
     setGeneration(generation + 1);
@@ -51,6 +72,14 @@ const Game: React.FC<Props> = ({ startWidth, startHeight }) => {
     setStartCells(newCells);
   };
 
+  const onWidthChange = (value: number) => {
+    setWidth(value);
+  };
+
+  const onHeightChange = (value: number) => {
+    setHeight(value);
+  };
+
   return (
     <div className="game">
       <GameHeader generation={generation} />
@@ -67,8 +96,8 @@ const Game: React.FC<Props> = ({ startWidth, startHeight }) => {
         clearSimulation={clearSimulation}
         width={width}
         height={height}
-        onWidthChange={setWidth}
-        onHeightChange={setHeight}
+        onWidthChange={onWidthChange}
+        onHeightChange={onHeightChange}
       />
     </div>
   );
