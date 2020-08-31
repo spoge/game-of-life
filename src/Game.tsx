@@ -3,13 +3,17 @@ import GameBoard from "./components/GameBoard";
 import GameUI from "./components/GameUI";
 import { nextGenerationCells } from "./utils/GameUtil";
 import arrayFromTo from "./utils/ArrayUtil";
+import GameHeader from "./components/GameHeader";
 
 interface Props {
-  width: number;
-  height: number;
+  startWidth: number;
+  startHeight: number;
 }
 
-const Game: React.FC<Props> = ({ width, height }) => {
+const Game: React.FC<Props> = ({ startWidth, startHeight }) => {
+  const [width, setWidth] = useState(startWidth);
+  const [height, setHeight] = useState(startHeight);
+
   const [startCells, setStartCells] = useState<boolean[][]>(
     arrayFromTo(width, height)
   );
@@ -49,12 +53,7 @@ const Game: React.FC<Props> = ({ width, height }) => {
 
   return (
     <div className="game">
-      <button
-        className="back-button"
-        onClick={() => window.location.assign(window.location.origin)}
-      >
-        {"< Back"}
-      </button>
+      <GameHeader generation={generation} />
       <GameBoard
         generation={generation}
         cells={cells}
@@ -62,11 +61,14 @@ const Game: React.FC<Props> = ({ width, height }) => {
         setStartCells={setStartCells}
       />
       <GameUI
-        generation={generation}
         isSimulating={isSimulating}
         toggleIsSimulating={() => setIsSimulating(!isSimulating)}
         resetSimulation={resetSimulation}
         clearSimulation={clearSimulation}
+        width={width}
+        height={height}
+        onWidthChange={setWidth}
+        onHeightChange={setHeight}
       />
     </div>
   );

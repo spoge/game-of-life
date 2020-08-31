@@ -5,7 +5,7 @@ import Game from "./Game";
 const App: React.FC = () => {
   return (
     <div className="app">
-      <Game width={40} height={40} />
+      <Game startWidth={20} startHeight={20} />
     </div>
   );
 };
