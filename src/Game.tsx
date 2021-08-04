@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import GameBoard from "./components/GameBoard";
 import GameUI from "./components/GameUI";
 import { nextGenerationCells } from "./utils/GameUtil";
@@ -10,7 +10,7 @@ interface Props {
   startHeight: number;
 }
 
-const Game: React.FC<Props> = ({ startWidth, startHeight }) => {
+const Game = ({ startWidth, startHeight }: Props) => {
   const [width, setWidth] = useState(startWidth);
   const [height, setHeight] = useState(startHeight);
 
@@ -20,17 +20,22 @@ const Game: React.FC<Props> = ({ startWidth, startHeight }) => {
   const [cells, setCells] = useState<boolean[][]>(startCells);
   const [generation, setGeneration] = useState(1);
   const [isSimulating, setIsSimulating] = useState(false);
-  const [interval, setInterval] = useState(500);
+  //const [interval, setInterval] = useState(500);
+  const interval = 500;
+
+  const simulateGeneration = useCallback(() => {
+    setCells(nextGenerationCells);
+    setGeneration(generation + 1);
+  }, [generation]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (isSimulating) {
         simulateGeneration();
-        setGeneration(generation + 1);
       }
     }, interval);
     return () => clearTimeout(timer);
-  }, [generation, isSimulating, interval]);
+  }, [isSimulating, interval, simulateGeneration]);
 
   useEffect(() => {
     if (width < 1 || height < 1) {
@@ -51,12 +56,9 @@ const Game: React.FC<Props> = ({ startWidth, startHeight }) => {
 
     setStartCells(newStartCells);
     setCells(newStartCells);
-  }, [width, height]);
-
-  const simulateGeneration = () => {
-    setCells(nextGenerationCells);
-    setGeneration(generation + 1);
-  };
+    return () => {};
+    // eslint-disable-next-line
+  }, [height, width, startHeight, startWidth]);
 
   const resetSimulation = () => {
     setIsSimulating(false);

@@ -1,11 +1,4 @@
-import React, {
-  ChangeEvent,
-  useState,
-  Dispatch,
-  SetStateAction,
-  useRef,
-  createRef,
-} from "react";
+import React, { useState } from "react";
 
 interface Props {
   isSimulating: boolean;
@@ -18,7 +11,7 @@ interface Props {
   onHeightChange: (value: number) => void;
 }
 
-const GameUI: React.FC<Props> = ({
+const GameUI = ({
   isSimulating,
   toggleIsSimulating,
   resetSimulation,
@@ -27,7 +20,7 @@ const GameUI: React.FC<Props> = ({
   height,
   onWidthChange,
   onHeightChange,
-}) => {
+}: Props) => {
   const [localWidth, setLocalWidth] = useState(width);
   const [localHeight, setLocalHeight] = useState(height);
 

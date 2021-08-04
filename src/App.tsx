@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Game from "./Game";
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <div className="app">
       <Game startWidth={20} startHeight={20} />

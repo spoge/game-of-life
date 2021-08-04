@@ -5,7 +5,7 @@ interface Props {
   onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const Cell: React.FC<Props> = ({ onClick, alive = false }) => {
+const Cell = ({ onClick, alive = false }: Props) => {
   return (
     <div className={`cell ${alive ? "alive" : "dead"}`} onClick={onClick}></div>
   );

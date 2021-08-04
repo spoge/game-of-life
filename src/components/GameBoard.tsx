@@ -8,12 +8,7 @@ interface Props {
   setStartCells: Dispatch<SetStateAction<boolean[][]>>;
 }
 
-const GameBoard: React.FC<Props> = ({
-  generation,
-  cells,
-  setCells,
-  setStartCells,
-}) => {
+const GameBoard = ({ generation, cells, setCells, setStartCells }: Props) => {
   const toggleCell = (
     setter: Dispatch<SetStateAction<boolean[][]>>,
     row: number,

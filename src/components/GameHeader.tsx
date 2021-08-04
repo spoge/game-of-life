@@ -4,7 +4,7 @@ interface Props {
   generation: number;
 }
 
-const GameHeader: React.FC<Props> = ({ generation }) => {
+const GameHeader = ({ generation }: Props) => {
   return (
     <div className="game-header">
       <button
