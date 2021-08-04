@@ -4,6 +4,7 @@ import GameUI from "./components/GameUI";
 import { nextGenerationCells } from "./utils/GameUtil";
 import arrayFromTo from "./utils/ArrayUtil";
 import GameHeader from "./components/GameHeader";
+import "./styles/Game.scss";
 
 interface Props {
   startWidth: number;

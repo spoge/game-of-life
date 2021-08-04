@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles/Cell.scss";
 
 interface Props {
   alive?: boolean;

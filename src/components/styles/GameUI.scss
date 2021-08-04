@@ -1,0 +1,43 @@
+.game-controls {
+  .game-inputs {
+    display: flex;
+    /*justify-content: space-between;*/
+    justify-content: center;
+    align-items: center;
+
+    .input-label {
+      font-size: 24px;
+      margin: 0.5em 0.25em;
+    }
+
+    .input-field {
+      padding: 0.25em;
+      margin: 0.5em 0.25em;
+      font-size: 24px;
+      width: 2em;
+      height: 1em;
+    }
+
+    .small-game-button {
+      padding: 0.5em;
+      margin: 0.5em 0.5em;
+      font-size: 20px;
+      width: 5em;
+    }
+  }
+
+  .game-buttons {
+    /*margin-top: 1em;*/
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+
+    .game-button {
+      padding: 0.5em;
+      margin: 0 0.5em;
+      font-size: 24px;
+      width: 4em;
+    }
+  }
+}

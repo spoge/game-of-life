@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import Cell from "./Cell";
+import "./styles/GameBoard.scss";
 
 interface Props {
   generation: number;
