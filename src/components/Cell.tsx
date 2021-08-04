@@ -8,7 +8,10 @@ interface Props {
 
 const Cell = ({ onClick, alive = false }: Props) => {
   return (
-    <div className={`cell ${alive ? "alive" : "dead"}`} onClick={onClick}></div>
+    <div
+      className={`cell no-select ${alive ? "alive" : "dead"}`}
+      onClick={onClick}
+    ></div>
   );
 };
 

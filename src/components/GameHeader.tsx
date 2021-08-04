@@ -8,12 +8,7 @@ interface Props {
 const GameHeader = ({ generation }: Props) => {
   return (
     <div className="game-header">
-      <button
-        className="back-button"
-        onClick={() => window.location.assign(window.location.origin)}
-      >
-        {"< Back"}
-      </button>
+      <div className="game-label">Conway's Game of Life</div>
       <div className="game-label">Generation: {generation}</div>
     </div>
   );
